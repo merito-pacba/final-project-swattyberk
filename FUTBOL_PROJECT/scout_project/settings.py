@@ -51,8 +51,8 @@ TEMPLATES = [
 ]
 
 # Proje ismine göre burayı kontrol et (FUTBOL_PROJECT.wsgi gibi)
-WSGI_APPLICATION = 'FUTBOL_PROJECT.wsgi.application'
-ROOT_URLCONF = 'FUTBOL_PROJECT.urls'
+WSGI_APPLICATION = 'scout_project.wsgi.application'
+ROOT_URLCONF = 'scout_project.urls'
 
 # Veritabanı (Şimdilik SQLite en iyisi)
 DATABASES = {
