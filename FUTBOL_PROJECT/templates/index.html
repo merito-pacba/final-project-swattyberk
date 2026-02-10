@@ -14,13 +14,13 @@
         {% if player.image %}
             <img src="{{ player.image.url }}" alt="{{ player.name }}">
         {% endif %}
-        <div class="player-info">
+       <div class="player-info">
     <div class="player-name">{{ player.name }}</div>
     <div class="player-detail">📍 {{ player.team }} | {{ player.position }}</div>
     
-    <div class="player-detail">🎂 Yaş: {{ player.age }}</div>
-    <div class="player-detail">📏 Boy: {{ player.height }} cm | ⚖️ Kilo: {{ player.weight }} kg</div>
-    <div class="player-detail">👟 Ayak: {{ player.preferred_foot }}</div>
+    <div class="player-detail">🎂 Age: {{ player.age }}</div>
+    <div class="player-detail">📏 Height: {{ player.height }} cm | ⚖️ Weight: {{ player.weight }} kg</div>
+    <div class="player-detail">👟 Foot: {{ player.preferred_foot }}</div>
     
     <div class="stats-badge">⚽ G+A: {{ player.goals|add:player.assists }} ({{ player.goals }}G / {{ player.assists }}A)</div>
 </div>
