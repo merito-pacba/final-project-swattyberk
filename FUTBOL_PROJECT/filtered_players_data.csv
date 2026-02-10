@@ -1,0 +1,2 @@
+
+filtered_df.head(20).to_csv('filtered_players_data.csv', index=False)
