@@ -8,6 +8,7 @@ class Player(models.Model):
     age = models.IntegerField()                # Yaş (Age)
     goals = models.IntegerField(default=0)     # Gol (Gls)
     assists = models.IntegerField(default=0)   # Asist (Ast)
+    rating = models.DecimalField(max_digits=4, decimal_places=2, default=0.0)
 
     def __str__(self):
         return self.name
