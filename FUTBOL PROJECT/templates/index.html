@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Futbol Scout Projesi</title>
+</head>
+<body>
+    <h1>Futbolcu Listesi</h1>
+    <hr>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for player in players %}
+            <div style="border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
+                {% if player.image %}
+                    <img src="{{ player.image.url }}" width="200" style="border-radius: 5px;">
+                {% endif %}
+                <h2>{{ player.name }}</h2>
+            </div>
+        {% empty %}
+            <p>Henüz hiç oyuncu eklenmemiş.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
