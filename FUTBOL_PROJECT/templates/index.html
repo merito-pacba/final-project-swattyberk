@@ -1,44 +1,191 @@
-<div style="text-align: center; padding: 40px 0; background-color: #f8f9fa;">
-    <h1 style="font-family: 'Arial', sans-serif; color: #1a1a1a; font-size: 2.5rem; margin-bottom: 10px;">
-        Wonderkid List 2024-2025
-    </h1>
-    <p style="color: #666; font-size: 1.1rem;">
-        Top performing U-23 players based on Kaggle statistical analysis
-    </p>
-    <hr style="width: 100px; border: 2px solid #007bff; margin: 20px auto;">
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScoutProject - Wonderkid List</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
 
-<div class="scout-container">
-    ...
-</div>
+        /* Header Section with Background Image */
+        .main-header {
+            text-align: center;
+            padding: 100px 20px;
+            /* Update 'header_bg.jpg' with your actual image filename */
+            background-image: url('/static/images/header_bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: white;
+        }
 
-<style>
-    .scout-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px; font-family: sans-serif; }
-    .player-card { border: 1px solid #ddd; border-radius: 15px; width: 250px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; background: white; }
-    .player-card img { width: 100%; height: 250px; object-fit: cover; }
-    .player-info { padding: 15px; }
-    .player-name { font-size: 1.2rem; font-weight: bold; margin: 10px 0; color: #333; }
-    .player-detail { color: #666; font-size: 0.9rem; margin-bottom: 5px; }
-    .stats-badge { background: #eef; padding: 5px 10px; border-radius: 20px; display: inline-block; font-weight: bold; color: #007bff; margin-top: 10px; }
-</style>
+        /* Dark Overlay for Readability */
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
 
-<div class="scout-container">
-    {% for player in players %}
-    <div class="player-card">
-        {% if player.image %}
-            <img src="{{ player.image.url }}" alt="{{ player.name }}">
-        {% endif %}
-       <div class="player-info">
-    <div class="player-name">{{ player.name }}</div>
-    <div class="player-detail">📍 {{ player.team }} | {{ player.position }}</div>
-    
-    <div class="player-detail">🎂 Age: {{ player.age }}</div>
-    <div class="player-detail">📏 Height: {{ player.height }} cm | ⚖️ Weight: {{ player.weight }} kg</div>
-    <div class="player-detail">👟 Foot: {{ player.preferred_foot }}</div>
-    
-    <div class="stats-badge">⚽ G+A: {{ player.goals|add:player.assists }} ({{ player.goals }}G / {{ player.assists }}A)</div>
-</div>
-    </div>
-    {% endfor %}
-</div>
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
 
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .header-divider {
+            width: 80px;
+            border: 2px solid #007bff;
+            margin: 20px auto;
+        }
+
+        /* Card Container */
+        .scout-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Player Card Design */
+        .player-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .player-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #ddd;
+        }
+
+        .player-info {
+            padding: 20px;
+        }
+
+        .player-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .player-team {
+            color: #007bff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .player-stats {
+            display: flex;
+            justify-content: space-between;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #777;
+            text-transform: uppercase;
+        }
+
+        .physical-traits {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1>Wonderkid List 2024-2025</h1>
+            <p>Top performing U-23 players based on Kaggle statistical analysis</p>
+            <div class="header-divider"></div>
+        </div>
+    </header>
+
+    <main class="scout-container">
+        {% for player in players %}
+        <div class="player-card">
+            {% if player.image %}
+                <img src="{{ player.image.url }}" alt="{{ player.name }}" class="player-image">
+            {% else %}
+                <img src="/static/images/default_player.jpg" alt="Default Image" class="player-image">
+            {% endif %}
+
+            <div class="player-info">
+                <div class="player-name">{{ player.name }}</div>
+                <div class="player-team">{{ player.team }} | {{ player.position }}</div>
+                
+                <div class="physical-traits">
+                    📏 {{ player.height }}cm | ⚖️ {{ player.weight }}kg | 👟 {{ player.preferred_foot }}
+                </div>
+
+                <div class="player-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">{{ player.age }}</span>
+                        <span class="stat-label">Age</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">{{ player.goals }}</span>
+                        <span class="stat-label">Goals</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">{{ player.assists }}</span>
+                        <span class="stat-label">Assists</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+
+</body>
+</html>
