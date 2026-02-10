@@ -8,7 +8,16 @@ class Player(models.Model):
     age = models.IntegerField()                # Yaş (Age)
     goals = models.IntegerField(default=0)     # Gol (Gls)
     assists = models.IntegerField(default=0)   # Asist (Ast)
-    rating = models.DecimalField(max_digits=4, decimal_places=2, default=0.0)
+    rating = models.DecimalField(max_digits=4, decimal_places=2, default=0.0) 
+    height = models.IntegerField(default=0, help_text="cm ") # Boy
+    weight = models.IntegerField(default=0, help_text="kg") # Kilo
+    
+    FOOT_CHOICES = [
+        ('Left', 'Left'),
+        ('Right', 'Right'),
+        ('Both Foot', 'Both Foot'),
+    ]
+    preferred_foot = models.CharField(max_length=10, choices=FOOT_CHOICES, default='right')
 
     def __str__(self):
         return self.name
