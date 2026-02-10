@@ -1,2 +1,21 @@
-
-filtered_df.head(20).to_csv('filtered_players_data.csv', index=False)
+Player,Squad,Pos,Age,Gls,Ast,Height,Weight
+Lamine Yamal,Barcelona,RW,17,5,7,178,66
+Jude Bellingham,Real Madrid,AM,21,12,6,186,75
+Florian Wirtz,Leverkusen,AM,21,11,10,176,71
+Cole Palmer,Chelsea,RW,22,22,11,182,73
+Bukayo Saka,Arsenal,RW,22,16,9,178,72
+Jamal Musiala,Bayern Munich,AM,21,10,6,184,70
+Arda Guler,Real Madrid,AM,19,6,0,175,70
+Kobbie Mainoo,Man Utd,CM,19,3,1,175,70
+Endrick,Real Madrid,ST,18,2,0,173,75
+Warren Zaire-Emery,PSG,CM,18,2,3,178,68
+Kenan Yildiz,Juventus,LW,19,4,1,185,78
+Alejandro Garnacho,Man Utd,LW,20,10,4,180,70
+Pau Cubarsi,Barcelona,CB,17,0,0,184,76
+Savinho,Man City,RW,20,9,10,176,70
+Nico Williams,Athletic Bilbao,LW,22,8,11,181,72
+Pedri,Barcelona,CM,21,4,2,174,60
+Gavi,Barcelona,CM,20,2,1,173,68
+Eduardo Camavinga,Real Madrid,CM,21,1,2,182,77
+Rasmus Hojlund,Man Utd,ST,21,10,2,191,79
+Harvey Elliott,Liverpool,AM,21,3,6,170,64
