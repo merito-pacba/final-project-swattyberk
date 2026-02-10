@@ -1,22 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Futbol Scout Projesi</title>
-</head>
-<body>
-    <h1>Futbolcu Listesi</h1>
-    <hr>
-    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-        {% for player in players %}
-            <div style="border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
-                {% if player.image %}
-                    <img src="{{ player.image.url }}" width="200" style="border-radius: 5px;">
-                {% endif %}
-                <h2>{{ player.name }}</h2>
-            </div>
-        {% empty %}
-            <p>Henüz hiç oyuncu eklenmemiş.</p>
-        {% endfor %}
+<style>
+    .scout-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px; font-family: sans-serif; }
+    .player-card { border: 1px solid #ddd; border-radius: 15px; width: 250px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; background: white; }
+    .player-card img { width: 100%; height: 250px; object-fit: cover; }
+    .player-info { padding: 15px; }
+    .player-name { font-size: 1.2rem; font-weight: bold; margin: 10px 0; color: #333; }
+    .player-detail { color: #666; font-size: 0.9rem; margin-bottom: 5px; }
+    .stats-badge { background: #eef; padding: 5px 10px; border-radius: 20px; display: inline-block; font-weight: bold; color: #007bff; margin-top: 10px; }
+</style>
+
+<div class="scout-container">
+    {% for player in players %}
+    <div class="player-card">
+        {% if player.image %}
+            <img src="{{ player.image.url }}" alt="{{ player.name }}">
+        {% endif %}
+        <div class="player-info">
+            <div class="player-name">{{ player.name }}</div>
+            <div class="player-detail">📍 {{ player.team }} | {{ player.position }}</div>
+            <div class="player-detail">🎂 Yaş: {{ player.age }}</div>
+            <div class="stats-badge">⚽ G+A: {{ player.goals|add:player.assists }} ({{ player.goals }}G / {{ player.assists }}A)</div>
+        </div>
     </div>
-</body>
-</html>
+    {% endfor %}
+</div>
