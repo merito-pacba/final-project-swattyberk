@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +18,8 @@
         .main-header {
             text-align: center;
             padding: 100px 20px;
-            /* Update 'header_bg.jpg' with your actual image filename */
-            background-image: url('/static/images/header_bg.jpg'); 
+            /* Dosya ismini saha.png olarak guncelledik */
+            background-image: url("{% static 'images/saha.png' %}"); 
             background-size: cover;
             background-position: center;
             position: relative;
@@ -157,7 +158,7 @@
             {% if player.image %}
                 <img src="{{ player.image.url }}" alt="{{ player.name }}" class="player-image">
             {% else %}
-                <img src="/static/images/default_player.jpg" alt="Default Image" class="player-image">
+                <img src="{% static 'images/default_player.jpg' %}" alt="Default Image" class="player-image">
             {% endif %}
 
             <div class="player-info">
