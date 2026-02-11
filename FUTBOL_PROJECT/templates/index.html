@@ -18,13 +18,14 @@
             color: white;
         }
 
-         .page-overlay {
+        .page-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             min-height: 100vh;
             width: 100%;
+            padding-bottom: 120px; /* Panel icin bosluk */
         }
 
-        /* Header Styles */
+        /* Header */
         .main-header {
             text-align: center;
             padding: 60px 20px 20px 20px;
@@ -42,7 +43,7 @@
             margin: 20px auto;
         }
 
-        /* Card Container */
+        /* Container */
         .scout-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -60,17 +61,32 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
             color: #333;
+            position: relative;
         }
 
         .player-card:hover {
             transform: translateY(-10px);
-            background: rgba(255, 255, 255, 1);
         }
 
         .player-image {
             width: 100%;
             height: 250px;
             object-fit: cover;
+        }
+
+        .compare-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
         }
 
         .player-info {
@@ -80,123 +96,38 @@
         .player-name {
             font-size: 1.4rem;
             font-weight: bold;
-            color: #1a1a1a;
-            margin-bottom: 2px;
         }
 
-        .player-team {
-            color: #007bff;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        /* Performance Bars Styles */
         .player-stats {
             margin-top: 15px;
             background: #f8f9fa;
-            padding: 15px;
+            padding: 10px;
             border-radius: 10px;
-        }
-
-        .stat-item {
-            margin-bottom: 10px;
-        }
-
-        .stat-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 5px;
         }
 
         .stat-bar-container {
             width: 100%;
             background-color: #e9ecef;
             border-radius: 10px;
-            height: 8px;
+            height: 6px;
             overflow: hidden;
+            margin-top: 4px;
         }
 
         .stat-bar-fill {
             height: 100%;
             background: linear-gradient(90deg, #007bff, #00d4ff);
-            border-radius: 10px;
-            transition: width 1s ease-in-out;
         }
 
-        .physical-traits {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 10px;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="page-overlay">
-        <header class="main-header">
-            <h1>Wonderkid List 2024-2025</h1>
-            <p>Top performing U-23 players based on Kaggle statistical analysis</p>
-            <div class="header-divider"></div>
-        </header>
-
-        <main class="scout-container">
-            {% for player in players %}
-            <div class="player-card">
-                {% if player.image %}
-                    <img src="{{ player.image.url }}" alt="{{ player.name }}" class="player-image">
-                {% else %}
-                    <img src="{% static 'images/default_player.jpg' %}" alt="Default" class="player-image">
-                {% endif %}
-
-                <div class="player-info">
-                    <div class="player-name">{{ player.name|upper }}</div>
-                    <div class="player-team">{{ player.team }} | {{ player.position }}</div>
-                    
-                    <div class="physical-traits">
-                        📏 {{ player.height }}cm | ⚖️ {{ player.weight }}kg | 👟 {{ player.preferred_foot }}
-                    </div>
-
-                    <div class="player-stats">
-                        <div class="stat-item">
-                            <div class="stat-header">
-                                <span>GOALS</span>
-                                <span>{{ player.goals }}</span>
-                            </div>
-                            <div class="stat-bar-container">
-                                <div class="stat-bar-fill" style="width: {{ player.goals|add:player.goals|add:player.goals|add:player.goals }}%;"></div>
-                            </div>
-                        </div>
-
-                        <div class="stat-item">
-                            <div class="stat-header">
-                                <span>ASSISTS</span>
-                                <span>{{ player.assists }}</span>
-                            </div>
-                            <div class="stat-bar-container">
-                                <div class="stat-bar-fill" style="width: {{ player.assists|add:player.assists|add:player.assists|add:player.assists }}%; background: #28a745;"></div>
-                            </div>
-                        </div>
-
-                        <div class="stat-header" style="margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 5px;">
-                            <span>AGE</span>
-                            <span>{{ player.age }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </main>
-    </div>
-
-</body>
-</html>
+        /* Comparison Panel */
+        #compare-panel {
+            position: fixed;
+            bottom: -200px;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            color: #222;
+            padding: 20px;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
+            transition: bottom 0.5s ease;
+            z-index:
