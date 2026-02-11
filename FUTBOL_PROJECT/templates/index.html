@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScoutProject - Wonderkid List</title>
     <style>
-        /* Body Background - Tum sayfa artik saha.png */
+        /* Body Background */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -14,12 +14,11 @@
             background-image: url("{% static 'images/saha.png' %}");
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Sayfa kayarken arka plan sabit kalir */
+            background-attachment: fixed;
             color: white;
         }
 
-        /* Sayfanin uzerine hafif karanlik bir katman ekleyelim ki yazilar okunsun */
-        .page-overlay {
+         .page-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             min-height: 100vh;
             width: 100%;
@@ -28,7 +27,7 @@
         /* Header Styles */
         .main-header {
             text-align: center;
-            padding: 80px 20px 40px 20px;
+            padding: 60px 20px 20px 20px;
         }
 
         .main-header h1 {
@@ -53,14 +52,14 @@
             margin: 0 auto;
         }
 
-        /* Player Card - Yari seffaf cam efekti (Glassmorphism) */
+        /* Player Card */
         .player-card {
-            background: rgba(255, 255, 255, 0.95); /* Kartlar hafif seffaf beyaz */
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
-            color: #333; /* Kart icindeki yazilar koyu kalsin */
+            color: #333;
         }
 
         .player-card:hover {
@@ -82,6 +81,7 @@
             font-size: 1.4rem;
             font-weight: bold;
             color: #1a1a1a;
+            margin-bottom: 2px;
         }
 
         .player-team {
@@ -91,36 +91,51 @@
             margin-bottom: 10px;
         }
 
+        /* Performance Bars Styles */
         .player-stats {
-            display: flex;
-            justify-content: space-between;
-            background: #f1f3f5;
-            padding: 10px;
-            border-radius: 8px;
             margin-top: 15px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
         }
 
         .stat-item {
-            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .stat-value {
-            display: block;
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
             font-weight: bold;
-            color: #222;
+            color: #555;
+            margin-bottom: 5px;
         }
 
-        .stat-label {
-            font-size: 0.7rem;
-            color: #666;
-            text-transform: uppercase;
+        .stat-bar-container {
+            width: 100%;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #00d4ff);
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
         }
 
         .physical-traits {
             font-size: 0.8rem;
-            color: #555;
+            color: #666;
             margin-top: 10px;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid #eee;
             padding-top: 10px;
         }
     </style>
@@ -153,16 +168,28 @@
 
                     <div class="player-stats">
                         <div class="stat-item">
-                            <span class="stat-value">{{ player.age }}</span>
-                            <span class="stat-label">Age</span>
+                            <div class="stat-header">
+                                <span>GOALS</span>
+                                <span>{{ player.goals }}</span>
+                            </div>
+                            <div class="stat-bar-container">
+                                <div class="stat-bar-fill" style="width: {{ player.goals|add:player.goals|add:player.goals|add:player.goals }}%;"></div>
+                            </div>
                         </div>
+
                         <div class="stat-item">
-                            <span class="stat-value">{{ player.goals }}</span>
-                            <span class="stat-label">Goals</span>
+                            <div class="stat-header">
+                                <span>ASSISTS</span>
+                                <span>{{ player.assists }}</span>
+                            </div>
+                            <div class="stat-bar-container">
+                                <div class="stat-bar-fill" style="width: {{ player.assists|add:player.assists|add:player.assists|add:player.assists }}%; background: #28a745;"></div>
+                            </div>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-value">{{ player.assists }}</span>
-                            <span class="stat-label">Assists</span>
+
+                        <div class="stat-header" style="margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 5px;">
+                            <span>AGE</span>
+                            <span>{{ player.age }}</span>
                         </div>
                     </div>
                 </div>
