@@ -1,4 +1,5 @@
 {
     "appService.defaultWebAppToDeploy": "/subscriptions/36627aba-a485-4ec3-ad32-82783579e3d2/resourceGroups/proje_group/providers/Microsoft.Web/sites/proje",
-    "appService.deploySubpath": "."
+    "appService.deploySubpath": ".",
+    "python-envs.pythonProjects": []
 }
