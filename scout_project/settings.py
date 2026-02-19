@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-kendi-anahtarin-burada-kalsin'
 # GÜVENLİK UYARISI: Yayına alırken bunu False yap!
 DEBUG = True
 
-ALLOWED_HOSTS = ['proje-hhfadbfkgnccdnfg.polandcentral-01.azurewebsites.net', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
