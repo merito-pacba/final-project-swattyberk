@@ -13,6 +13,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "proje-hhfadbfkgnccdnfg.polandcentral-01.azurewebsites.net",
     ".azurewebsites.net",
+    "127.0.0.1",
 ]
 
 INSTALLED_APPS = [
